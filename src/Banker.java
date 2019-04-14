@@ -41,6 +41,14 @@ public class Banker {
             }
         }
 
+        int[][] need = new int[processNum][typeNum];
+
+        for(int i = 0; i < processNum; i++){
+            for(int j = 0; j < typeNum; j++){
+                need[i][j] = max[i][j] - allocation[i][j];
+            }
+        }
+
         System.out.println("Total system resources are: ");
 
         for(char c = 'A'; c < 'A' + typeNum; c++){
@@ -80,6 +88,22 @@ public class Banker {
             System.out.print("P" + (i+1) + "\t");
             for(int j = 0; j < typeNum; j++){
                 System.out.print(allocation[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        System.out.println("Processes (possibly needed resources): ");
+
+        for(char c = 'A'; c < 'A' + typeNum; c++){
+            System.out.print("\t" + new String(String.valueOf(c)));
+        }
+        System.out.println();
+
+        for(int i = 0; i < processNum; i++){
+            System.out.print("P" + (i+1) + "\t");
+            for(int j = 0; j < typeNum; j++){
+                System.out.print(need[i][j] + "\t");
             }
             System.out.println();
         }
